@@ -1,4 +1,5 @@
 
+import 'package:android_solution/pages/signup_screen.dart';
 import 'package:android_solution/pages/verification_screen.dart';
 import 'package:android_solution/pages/welcome_screen.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: WelcomeScreen(),
+      home: SignupScreen(),
       themeMode: ThemeMode.light
     );
   }

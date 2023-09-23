@@ -70,7 +70,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     );
   }
 
-  _buildLogo() {
+  _buildLogo() { 
     return Container(
       child: Image.asset(
         "assets/logo.png",
