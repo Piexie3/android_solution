@@ -9,28 +9,39 @@ This application is under development their will be changes.
 2. Clone the repo
  ```
 $ git clone https://github.com/piexie3/android_solution
-$ cd android_solution/
+$ cd android_solution
  ```
-3. Setup the firebase app
+## How to setup Firebase database 
 
-You'll need to create a Firebase instance. Follow the instructions at https://console.firebase.google.com.
+* You will need to create a firebase account.
+    * [click here to create a firebase account](https://console.firebase.google.com.)
+    * click on the "console" in the top-right-hand menu
+    * Click on "get started" button.
+        * Enter the name of the project in this case will be "androidSolution"
+        * (you can neglect google analytics)
 
-Once your Firebase instance is created, you'll need to enable anonymous authentication.
+Once your Firebase instance is created, you'll need to configure the project.
 
-Go to the Firebase Console for your new instance.
+* Click on the project overview in the left-hand menu
+    * select Android project(with android Icon)
+    * Create an app within your Firebase instance for Android, with package name com.example.android_solution
+    * Follow instructions to download google-services.json
 
-    * Click "Authentication" in the left-hand menu
-        * Click the "sign-in method" tab
-        * Click "Google" and enable it
-    * Enable the Firebase Database
-        *  Go to the Firebase Console
-        * Click "Database" in the left-hand menu
-        * Click the Cloudstore "Create Database" button
-        * Select "Start in test mode" and "Enable"
-            -(skip if not running on Android)
 
-Create an app within your Firebase instance for Android, with package name com.mohak.instagram
+You'll need to enable Authentication Methodes.
+
+* Click "Authentication" in the left-hand menu
+    * click on "get started"
+    * Click the "sign-in method" tab
+    * Click "Google" and enable it
+    
+You will need to enable the Firebase Database
+* Click "Database" in the left-hand menu
+    * Click the Cloudstore "Create Database" button
+    * Select "Start in test mode" and "Enable"
+
 # Run the following command to get your SHA-1 key:
+
 Alternative 1
 ```
 keytool -exportcert -list -v \
@@ -38,21 +49,22 @@ keytool -exportcert -list -v \
 ```
 Alternative 2
 Make sure you are in the project directory
+
+Navigating to the Android Directory
 ```
 $ cd android
+```
+Getting the signing reports
+```
 $ ./gradlew signingreport
 ```
-In the Firebase console, in the settings of your Android app, add your SHA-1 key by clicking "Add Fingerprint".
-Follow instructions to download google-services.json
-place google-services.json into /android/app/.
-(skip if not running on iOS)
-Create an app within your Firebase instance for iOS, with your app package name
-Follow instructions to download GoogleService-Info.plist
-Open XCode, right click the Runner folder, select the "Add Files to 'Runner'" menu, and select the GoogleService-Info.plist file to add it to /ios/Runner in XCode
-Open /ios/Runner/Info.plist in a text editor. Locate the CFBundleURLSchemes key. The second item in the array value of this key is specific to the Firebase instance. Replace it with the value for REVERSED_CLIENT_ID from GoogleService-Info.plist
-Double check install instructions for both
 
-Google Auth Plugin
-https://pub.dartlang.org/packages/firebase_auth
-Firestore Plugin
-https://pub.dartlang.org/packages/cloud_firestore
+In the Firebase console, in the settings of your Android app, add your SHA-1 key by clicking 
+`Add Fingerprint`
+* Add both SHA-1 and SHA-256
+
+# Extra Resources
+[Google Auth Plugin](https://pub.dartlang.org/packages/firebase_auth)
+[Firestore Plugin](https://pub.dartlang.org/packages/cloud_firestore)
+
+[dependancies in flutter application](https://pub.dev/)
