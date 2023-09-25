@@ -67,4 +67,4 @@ In the Firebase console, in the settings of your Android app, add your SHA-1 key
 # Extra Resources
 [Google Auth Plugin](https://pub.dartlang.org/packages/firebase_auth)
 [Firestore Plugin](https://pub.dartlang.org/packages/cloud_firestore)
-[dependancies in flutter application](https://pub.dev/)
+[Flutter packages](https://pub.dev)
