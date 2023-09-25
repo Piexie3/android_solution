@@ -6,9 +6,9 @@ This application is under development their will be changes.
 
 ## Getting Started
 1. [setup Futter](https://docs.flutter.dev/get-started/install)
-2. Clone the repo
+2. Clone the repo\n
 [
-$ git clone https://github.com/piexie3/android_solution
+$ git clone https://github.com/piexie3/android_solution\n
 $ cd android_solution/android_solution
 ]
 4. Setup the firebase app
