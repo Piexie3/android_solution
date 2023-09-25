@@ -7,11 +7,10 @@ This application is under development their will be changes.
 ## Getting Started
 1. [setup Futter](https://docs.flutter.dev/get-started/install)
 2. Clone the repo
- Markup : 
- `
+ ```
 $ git clone https://github.com/piexie3/android_solution
 $ cd android_solution/
- `
+ ```
 4. Setup the firebase app
 #
 You'll need to create a Firebase instance. Follow the instructions at https://console.firebase.google.com.
