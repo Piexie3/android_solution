@@ -11,12 +11,14 @@ This application is under development their will be changes.
 $ git clone https://github.com/piexie3/android_solution
 $ cd android_solution/
  ```
-4. Setup the firebase app
-#
+3. Setup the firebase app
+
 You'll need to create a Firebase instance. Follow the instructions at https://console.firebase.google.com.
-#
+
 Once your Firebase instance is created, you'll need to enable anonymous authentication.
+
 Go to the Firebase Console for your new instance.
+
 Click "Authentication" in the left-hand menu
 Click the "sign-in method" tab
 Click "Google" and enable it
