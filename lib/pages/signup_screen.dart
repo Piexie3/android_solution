@@ -54,10 +54,7 @@ class _SignupScreenState extends State<SignupScreen> {
     return Container(
       child: ElevatedButton(
         onPressed: () {},
-
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           Text('Next'),
           Icon(
             Icons.arrow_forward_ios,
@@ -76,10 +73,11 @@ class _SignupScreenState extends State<SignupScreen> {
           top: 10,
         ),
         child: TextField(
+          maxLines: 1,
           decoration: InputDecoration(
               hintText: hintText,
               label: Text(label),
-              hintStyle: TextStyle(
+              hintStyle: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w400,
               ),
@@ -87,15 +85,16 @@ class _SignupScreenState extends State<SignupScreen> {
                   ? GestureDetector(
                       onTap: () {
                         showCountryPicker(
-                            context: context,
-                            onSelect: (Country selectedCountry) {
-                              setState(() {
-                                _selectedCountry = selectedCountry;
-                              });
-                            },
-                            countryListTheme: CountryListThemeData(
-                                bottomSheetHeight:
-                                    MediaQuery.of(context).size.height * 0.7));
+                          context: context,
+                          onSelect: (Country selectedCountry) {
+                            setState(() {
+                              _selectedCountry = selectedCountry;
+                            });
+                          },
+                          countryListTheme: CountryListThemeData(
+                              bottomSheetHeight:
+                                  MediaQuery.of(context).size.height * 0.7),
+                        );
                       },
                       child: Container(
                         child: Text("+ ${_selectedCountry.phoneCode}"),
@@ -119,6 +118,20 @@ class _SignupScreenState extends State<SignupScreen> {
 
   _buildLogo() {
     return Container(
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+              color: Colors.grey.shade500,
+              spreadRadius: 1,
+              blurRadius: 2,
+              offset: const Offset(1, 1))
+        ],
+        border: Border.all(
+          color: Color.fromRGBO(221, 221, 221, 0.907),
+        ),
+        // borderRadius: BorderRadius.circular(radius)
+        shape: BoxShape.circle,
+      ),
       child: Image.asset(
         "assets/logo.png",
         height: 100,
