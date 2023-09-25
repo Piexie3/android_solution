@@ -60,6 +60,7 @@ $ ./gradlew signingreport
 ```
 
 In the Firebase console, in the settings of your Android app, add your SHA-1 key by clicking 
+
 `Add Fingerprint`
 * Add both SHA-1 and SHA-256
 
