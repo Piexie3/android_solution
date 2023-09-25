@@ -19,19 +19,29 @@ Once your Firebase instance is created, you'll need to enable anonymous authenti
 
 Go to the Firebase Console for your new instance.
 
-Click "Authentication" in the left-hand menu
-Click the "sign-in method" tab
-Click "Google" and enable it
-Enable the Firebase Database
-Go to the Firebase Console
-Click "Database" in the left-hand menu
-Click the Cloudstore "Create Database" button
-Select "Start in test mode" and "Enable"
-(skip if not running on Android)
+    * Click "Authentication" in the left-hand menu
+        * Click the "sign-in method" tab
+        * Click "Google" and enable it
+    * Enable the Firebase Database
+        *  Go to the Firebase Console
+        * Click "Database" in the left-hand menu
+        * Click the Cloudstore "Create Database" button
+        * Select "Start in test mode" and "Enable"
+            -(skip if not running on Android)
+
 Create an app within your Firebase instance for Android, with package name com.mohak.instagram
-Run the following command to get your SHA-1 key:
+# Run the following command to get your SHA-1 key:
+Alternative 1
+```
 keytool -exportcert -list -v \
 -alias androiddebugkey -keystore ~/.android/debug.keystore
+```
+Alternative 2
+Make sure you are in the project directory
+```
+$ cd android
+$ ./gradlew signingreport
+```
 In the Firebase console, in the settings of your Android app, add your SHA-1 key by clicking "Add Fingerprint".
 Follow instructions to download google-services.json
 place google-services.json into /android/app/.
