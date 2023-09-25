@@ -7,9 +7,11 @@ This application is under development their will be changes.
 ## Getting Started
 1. [setup Futter](https://docs.flutter.dev/get-started/install)
 2. Clone the repo
+[
 $ git clone https://github.com/piexie3/android_solution
-$ cd android_solution/
-3. Setup the firebase app
+$ cd android_solution/android_solution
+]
+4. Setup the firebase app
 You'll need to create a Firebase instance. Follow the instructions at https://console.firebase.google.com.
 Once your Firebase instance is created, you'll need to enable anonymous authentication.
 Go to the Firebase Console for your new instance.
