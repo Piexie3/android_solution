@@ -70,7 +70,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     );
   }
 
-  _buildLogo() { 
+  _buildLogo() {
     return Container(
       child: Image.asset(
         "assets/logo.png",
@@ -118,16 +118,17 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         width: 295,
         margin: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(8),
-            boxShadow: const [
-              BoxShadow(
-                color: Color.fromARGB(255, 151, 151, 151),
-                spreadRadius: 1,
-                blurRadius: 2,
-                offset: Offset(0, 1),
-              )
-            ]),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: const [
+            BoxShadow(
+              color: Color.fromARGB(255, 151, 151, 151),
+              spreadRadius: 1,
+              blurRadius: 2,
+              offset: Offset(0, 1),
+            )
+          ],
+        ),
         child: Container(
           child: Row(
             mainAxisAlignment:

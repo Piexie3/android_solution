@@ -52,6 +52,21 @@ class _SignupScreenState extends State<SignupScreen> {
 
   _buildButton() {
     return Container(
+      width: 295,
+      height: 44,
+      margin: EdgeInsets.only(top: 40),
+       decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: const [
+            BoxShadow(
+              color: Color.fromARGB(255, 151, 151, 151),
+              spreadRadius: 1,
+              blurRadius: 2,
+              offset: Offset(0, 1),
+            )
+          ],
+        ),
       child: ElevatedButton(
         onPressed: () {},
         child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -97,7 +112,12 @@ class _SignupScreenState extends State<SignupScreen> {
                         );
                       },
                       child: Container(
-                        child: Text("+ ${_selectedCountry.phoneCode}"),
+                        child: Row(mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text("+ ${_selectedCountry.phoneCode}"),
+                            Icon(Icons.arrow_drop_down)
+                          ],
+                        ),
                       ),
                     )
                   : SizedBox(),
@@ -118,20 +138,6 @@ class _SignupScreenState extends State<SignupScreen> {
 
   _buildLogo() {
     return Container(
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-              color: Colors.grey.shade500,
-              spreadRadius: 1,
-              blurRadius: 2,
-              offset: const Offset(1, 1))
-        ],
-        border: Border.all(
-          color: Color.fromRGBO(221, 221, 221, 0.907),
-        ),
-        // borderRadius: BorderRadius.circular(radius)
-        shape: BoxShape.circle,
-      ),
       child: Image.asset(
         "assets/logo.png",
         height: 100,
