@@ -11,6 +11,15 @@ This application is under development their will be changes.
 $ git clone https://github.com/piexie3/android_solution
 $ cd android_solution
  ```
+If you have not downloaded git 
+* For Windows [download here](https://git-scm.com/download/win) and run as administrator
+* For Linux [Follow documentation here](https://git-scm.com/download/linux)
+* For Mac OS [Follow documentation here](https://git-scm.com/download/mac)
+
+3. Run the app by using this command
+```
+$ flutter run
+```
 ## How to setup Firebase database 
 
 * You will need to create a firebase account.
