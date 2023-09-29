@@ -1,3 +1,7 @@
+import 'package:android_solution/methods/auth_methods.dart';
+import 'package:android_solution/pages/home_screen.dart';
+import 'package:android_solution/pages/login_screen.dart';
+import 'package:android_solution/pages/signup_screen.dart';
 import 'package:android_solution/pages/verification_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -52,7 +56,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               print("...Go to login Screen");
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => VerificationScreen(),
+                  builder: (context) => const LoginScreen(),
                 ),
               );
             },
@@ -109,8 +113,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
   _buildThirdPartySignUp(String loginType, String logo) {
     return InkWell(
-      onTap: () {
+      onTap: () async {
         print("...signup with $loginType");
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => SignupScreen()));
       },
       splashColor: Colors.green,
       child: Container(

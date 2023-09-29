@@ -1,3 +1,4 @@
+import 'package:android_solution/pages/verification_screen.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -68,7 +69,7 @@ class _SignupScreenState extends State<SignupScreen> {
           ],
         ),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () =>Navigator.push(context, MaterialPageRoute(builder: (context)=>VerificationScreen())),
         child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           Text('Next'),
           Icon(
@@ -131,6 +132,7 @@ class _SignupScreenState extends State<SignupScreen> {
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
               )),
+        
         ),
       ),
     );

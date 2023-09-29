@@ -1,3 +1,4 @@
+import 'package:android_solution/pages/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 
@@ -133,8 +134,11 @@ class _VerificationScreenState extends State<VerificationScreen> {
                           )
                         ]),
                     child: ElevatedButton(
-                      
-                      onPressed: () {},
+                      onPressed: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => HomeScreen(),
+                        ),
+                      ),
                       child: const Text(
                         "Verify",
                       ),
