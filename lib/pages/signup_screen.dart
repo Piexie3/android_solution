@@ -1,3 +1,4 @@
+import 'package:android_solution/methods/auth_methods.dart';
 import 'package:android_solution/pages/verification_screen.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,26 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  bool loading = false;
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  // }
+
+  @override
+  void dispose() {
+    super.dispose();
+    usernameController.dispose();
+    emailController.dispose();
+    phoneController.dispose();
+    passwordController.dispose();
+  }
+
   Country _selectedCountry = Country(
     phoneCode: "254",
     countryCode: "KE",
@@ -23,6 +44,25 @@ class _SignupScreenState extends State<SignupScreen> {
     displayNameNoCountryCode: '',
     e164Key: '',
   );
+  void signup() async {
+    setState(() {
+      loading = true;
+    });
+    if (usernameController.text.isNotEmpty &&
+        emailController.text.isNotEmpty &&
+        passwordController.text.isNotEmpty &&
+        phoneController.text.isNotEmpty) {
+      await AuthMethods().signUpUser(
+        username: usernameController.text,
+        password: passwordController.text,
+        email: emailController.text,
+        phone: phoneController.text,
+      );
+    }
+     setState(() {
+      loading = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,26 +96,30 @@ class _SignupScreenState extends State<SignupScreen> {
       width: 295,
       height: 44,
       margin: EdgeInsets.only(top: 40),
-       decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(8),
-          boxShadow: const [
-            BoxShadow(
-              color: Color.fromARGB(255, 151, 151, 151),
-              spreadRadius: 1,
-              blurRadius: 2,
-              offset: Offset(0, 1),
-            )
-          ],
-        ),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
+        boxShadow: const [
+          BoxShadow(
+            color: Color.fromARGB(255, 151, 151, 151),
+            spreadRadius: 1,
+            blurRadius: 2,
+            offset: Offset(0, 1),
+          )
+        ],
+      ),
       child: ElevatedButton(
-        onPressed: () =>Navigator.push(context, MaterialPageRoute(builder: (context)=>VerificationScreen())),
-        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Text('Next'),
-          Icon(
-            Icons.arrow_forward_ios,
-          ),
-        ]),
+        onPressed: signup,
+        child: loading == true
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                Text('Next'),
+                Icon(
+                  Icons.arrow_forward_ios,
+                ),
+              ]),
       ),
     );
   }
@@ -113,7 +157,8 @@ class _SignupScreenState extends State<SignupScreen> {
                         );
                       },
                       child: Container(
-                        child: Row(mainAxisSize: MainAxisSize.min,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
                           children: [
                             Text("+ ${_selectedCountry.phoneCode}"),
                             Icon(Icons.arrow_drop_down)
@@ -132,7 +177,6 @@ class _SignupScreenState extends State<SignupScreen> {
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
               )),
-        
         ),
       ),
     );

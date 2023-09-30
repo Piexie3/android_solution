@@ -1,8 +1,5 @@
-import 'package:android_solution/methods/auth_methods.dart';
-import 'package:android_solution/pages/home_screen.dart';
 import 'package:android_solution/pages/login_screen.dart';
 import 'package:android_solution/pages/signup_screen.dart';
-import 'package:android_solution/pages/verification_screen.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatefulWidget {

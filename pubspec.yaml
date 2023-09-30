@@ -31,6 +31,7 @@ dependencies:
   cloud_firestore: ^4.9.2
   country_picker: ^2.0.21
   cupertino_icons: ^1.0.2
+  #used in Authentication
   firebase_auth: ^4.10.0
   firebase_core: ^2.16.0
   flutter:
