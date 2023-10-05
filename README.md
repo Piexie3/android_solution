@@ -49,6 +49,9 @@ You will need to enable the Firebase Database
     * Click the Cloudstore "Create Database" button
     * Select "Start in test mode" and "Enable"
 
+After all configuration you have to go to <App-level>(build.gradle) in defaultConfig section change
+`minSdkVersion flutter.minSdkVersion` to `minSdkVersion 21`
+
 # Run the following command to get your SHA-1 key:
 
 Alternative 1
@@ -83,5 +86,11 @@ In the Firebase console, in the settings of your Android app, add your SHA-1 key
 
 
 ## Features
-
+[x] Sign in Screen
+[x] Verification Screen
+[x] Firebase configuration
+[x] creating user with Email and password
+[ ] signing in user with email and password
+[ ] Home Screen
+[ ] Profile Screen
 

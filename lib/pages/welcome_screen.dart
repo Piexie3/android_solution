@@ -51,11 +51,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           GestureDetector(
             onTap: () {
               print("...Go to login Screen");
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const LoginScreen(),
-                ),
-              );
+              // Navigator.of(context).push(
+              //   MaterialPageRoute(
+              //     builder: (context) => const LoginScreen(),
+              //   ),
+              // );
             },
             child: Text(
               "Login here",

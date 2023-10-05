@@ -16,6 +16,7 @@ class _SignupScreenState extends State<SignupScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmController = TextEditingController();
   bool loading = false;
 
   // @override
@@ -30,6 +31,7 @@ class _SignupScreenState extends State<SignupScreen> {
     emailController.dispose();
     phoneController.dispose();
     passwordController.dispose();
+    confirmController.dispose();
   }
 
   Country _selectedCountry = Country(
@@ -48,18 +50,23 @@ class _SignupScreenState extends State<SignupScreen> {
     setState(() {
       loading = true;
     });
-    if (usernameController.text.isNotEmpty &&
-        emailController.text.isNotEmpty &&
-        passwordController.text.isNotEmpty &&
+    if (usernameController.text.isNotEmpty ||
+        emailController.text.isNotEmpty ||
+        passwordController.text.isNotEmpty ||
         phoneController.text.isNotEmpty) {
-      await AuthMethods().signUpUser(
+      String res = await AuthMethods().signUpUser(
         username: usernameController.text,
         password: passwordController.text,
         email: emailController.text,
         phone: phoneController.text,
       );
+      // print(res);
+      SnackBar snackBar = SnackBar(
+        content: Text(res),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
-     setState(() {
+    setState(() {
       loading = false;
     });
   }
@@ -76,12 +83,35 @@ class _SignupScreenState extends State<SignupScreen> {
               children: [
                 _buildLogo(),
                 _buildTextInput(
-                    'Full Name', 'John Mark', Icons.person_2_outlined),
-                _buildTextInput('Email', 'example@domain.com', Icons.email),
-                _buildTextInput('Phone Number', ' xxxxxxxxx', Icons.phone),
-                _buildTextInput('Password', 'Password', Icons.visibility),
+                  'Full Name',
+                  'John Mark',
+                  Icons.person_2_outlined,
+                  usernameController,
+                ),
                 _buildTextInput(
-                    'Confirm Password', 'Password', Icons.visibility_off),
+                  'Email',
+                  'example@domain.com',
+                  Icons.email,
+                  emailController,
+                ),
+                _buildTextInput(
+                  'Phone Number',
+                  ' xxxxxxxxx',
+                  Icons.phone,
+                  phoneController,
+                ),
+                _buildTextInput(
+                  'Password',
+                  'Password',
+                  Icons.visibility,
+                  passwordController,
+                ),
+                _buildTextInput(
+                  'Confirm Password',
+                  'Password',
+                  Icons.visibility_off,
+                  confirmController,
+                ),
                 _buildButton()
               ],
             ),
@@ -92,39 +122,47 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   _buildButton() {
-    return Container(
-      width: 295,
-      height: 44,
-      margin: EdgeInsets.only(top: 40),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(8),
-        boxShadow: const [
-          BoxShadow(
-            color: Color.fromARGB(255, 151, 151, 151),
-            spreadRadius: 1,
-            blurRadius: 2,
-            offset: Offset(0, 1),
-          )
-        ],
-      ),
-      child: ElevatedButton(
-        onPressed: signup,
-        child: loading == true
-            ? Center(
-                child: CircularProgressIndicator(),
-              )
-            : Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                Text('Next'),
-                Icon(
-                  Icons.arrow_forward_ios,
-                ),
-              ]),
+    return GestureDetector(
+      onTap: signup,
+      child: Container(
+        width: 295,
+        height: 44,
+        margin: EdgeInsets.only(top: 40),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: const [
+            BoxShadow(
+              color: Color.fromARGB(255, 151, 151, 151),
+              spreadRadius: 1,
+              blurRadius: 2,
+              offset: Offset(0, 1),
+            )
+          ],
+        ),
+        child: ElevatedButton(
+          onPressed: () {},
+          child: loading == true
+              ? Center(
+                  child: CircularProgressIndicator(),
+                )
+              : Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  Text('Next'),
+                  Icon(
+                    Icons.arrow_forward_ios,
+                  ),
+                ]),
+        ),
       ),
     );
   }
 
-  _buildTextInput(String label, String hintText, IconData icon) {
+  _buildTextInput(
+    String label,
+    String hintText,
+    IconData icon,
+    TextEditingController controller,
+  ) {
     return Center(
       child: Container(
         height: 44,
@@ -133,6 +171,7 @@ class _SignupScreenState extends State<SignupScreen> {
           top: 10,
         ),
         child: TextField(
+          controller: controller,
           maxLines: 1,
           decoration: InputDecoration(
               hintText: hintText,
