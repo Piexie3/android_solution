@@ -47,6 +47,7 @@ class _SignupScreenState extends State<SignupScreen> {
     e164Key: '',
   );
   void signup() async {
+    print("...Clicked next button");
     setState(() {
       loading = true;
     });
@@ -122,37 +123,37 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   _buildButton() {
-    return GestureDetector(
-      onTap: signup,
-      child: Container(
-        width: 295,
-        height: 44,
-        margin: EdgeInsets.only(top: 40),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(8),
-          boxShadow: const [
-            BoxShadow(
-              color: Color.fromARGB(255, 151, 151, 151),
-              spreadRadius: 1,
-              blurRadius: 2,
-              offset: Offset(0, 1),
-            )
-          ],
-        ),
-        child: ElevatedButton(
-          onPressed: () {},
-          child: loading == true
-              ? Center(
-                  child: CircularProgressIndicator(),
-                )
-              : Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+    return Container(
+      width: 295,
+      height: 44,
+      margin: EdgeInsets.only(top: 40),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
+        boxShadow: const [
+          BoxShadow(
+            color: Color.fromARGB(255, 151, 151, 151),
+            spreadRadius: 1,
+            blurRadius: 2,
+            offset: Offset(0, 1),
+          )
+        ],
+      ),
+      child: ElevatedButton(
+        onPressed: signup,
+        child: loading == true
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
                   Text('Next'),
                   Icon(
                     Icons.arrow_forward_ios,
                   ),
-                ]),
-        ),
+                ],
+              ),
       ),
     );
   }

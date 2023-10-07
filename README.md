@@ -86,11 +86,17 @@ In the Firebase console, in the settings of your Android app, add your SHA-1 key
 
 
 ## Features
-[x] Sign in Screen
-[x] Verification Screen
-[x] Firebase configuration
-[x] creating user with Email and password
-[ ] signing in user with email and password
-[ ] Home Screen
-[ ] Profile Screen
+- [x] Sign in Screen
+- [x] Verification Screen
+- [x] Firebase configuration
+- [x] creating user with Email and password
+- [ ] signing in user with email and password
+- [ ] Home Screen
+- [ ] Profile Screen
+
+
+
+
+//dependencies
+
 
