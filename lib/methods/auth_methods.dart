@@ -51,9 +51,15 @@ class AuthMethods {
     try {
       await auth.signInWithEmailAndPassword(email: email, password: password);
       res = "success";
-    } catch (e) {
-      res = e.toString();
+    } on FirebaseAuthException catch (error) {
+      res = "FirebaseError: ${error.message}";
+    }catch(e){
+      res = "Error: ${e.toString()}";
     }
     return res;
+  }
+
+   Future<void> signOut() async {
+    await auth.signOut();
   }
 }

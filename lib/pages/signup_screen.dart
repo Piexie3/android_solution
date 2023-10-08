@@ -1,4 +1,6 @@
 import 'package:android_solution/methods/auth_methods.dart';
+import 'package:android_solution/pages/home_screen.dart';
+import 'package:android_solution/pages/login_screen.dart';
 import 'package:android_solution/pages/verification_screen.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
@@ -61,6 +63,13 @@ class _SignupScreenState extends State<SignupScreen> {
         email: emailController.text,
         phone: phoneController.text,
       );
+      if (res == "success") {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => LoginScreen(),
+          ),
+        );
+      }
       // print(res);
       SnackBar snackBar = SnackBar(
         content: Text(res),
@@ -113,11 +122,46 @@ class _SignupScreenState extends State<SignupScreen> {
                   Icons.visibility_off,
                   confirmController,
                 ),
-                _buildButton()
+                _buildButton(),
+                _gotoSignup()
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  _gotoSignup() {
+    return Container(
+      margin: EdgeInsets.only(
+        top: 10,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "Already have an account?",
+            style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          GestureDetector(
+            onTap: () => Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (context) => LoginScreen(),
+              ),
+            ),
+            child: Text(
+              "Login here",
+              style: TextStyle(
+                fontSize: 15,
+                color: Colors.blue,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -143,12 +187,14 @@ class _SignupScreenState extends State<SignupScreen> {
         onPressed: signup,
         child: loading == true
             ? Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(
+                  color: Colors.orange,
+                ),
               )
             : Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Next'),
+                  Text('SignUp'),
                   Icon(
                     Icons.arrow_forward_ios,
                   ),
