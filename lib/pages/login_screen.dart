@@ -151,7 +151,18 @@ class _LoginScreenState extends State<LoginScreen> {
         width: 295,
         margin: EdgeInsets.only(
           top: 10,
-        ),
+        ),decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
+        boxShadow: const [
+          BoxShadow(
+            color: Color.fromARGB(255, 151, 151, 151),
+            spreadRadius: 1,
+            blurRadius: 2,
+            offset: Offset(0, 1),
+          )
+        ],
+      ),
         child: TextField(
           controller: controller,
           maxLines: 1,

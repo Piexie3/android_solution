@@ -87,7 +87,7 @@ class _SignupScreenState extends State<SignupScreen> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
-            padding: const EdgeInsets.only(top: 100),
+            
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -216,7 +216,18 @@ class _SignupScreenState extends State<SignupScreen> {
         width: 295,
         margin: EdgeInsets.only(
           top: 10,
-        ),
+        ),decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
+        boxShadow: const [
+          BoxShadow(
+            color: Color.fromARGB(255, 151, 151, 151),
+            spreadRadius: 1,
+            blurRadius: 2,
+            offset: Offset(0, 1),
+          )
+        ],
+      ),
         child: TextField(
           controller: controller,
           maxLines: 1,
@@ -270,6 +281,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
   _buildLogo() {
     return Container(
+      padding: const EdgeInsets.only(top: 100),
       child: Image.asset(
         "assets/logo.png",
         height: 100,
