@@ -1,10 +1,7 @@
 import 'package:android_solution/methods/auth_methods.dart';
-import 'package:android_solution/pages/home_screen.dart';
 import 'package:android_solution/pages/login_screen.dart';
-import 'package:android_solution/pages/verification_screen.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});

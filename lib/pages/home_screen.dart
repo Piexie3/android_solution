@@ -27,9 +27,12 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  int currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+     
       body: SafeArea(
         child: Container(
           // height: 180,

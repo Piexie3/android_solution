@@ -1,3 +1,4 @@
+import 'package:android_solution/pages/application.dart';
 import 'package:android_solution/pages/home_screen.dart';
 import 'package:android_solution/pages/login_screen.dart';
 import 'package:android_solution/pages/welcome_screen.dart';
@@ -17,35 +18,31 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-
       debugShowCheckedModeBanner: false,
-      home:StreamBuilder(
-          stream: FirebaseAuth.instance
-              .authStateChanges(), //.userchanges() or .idtokenChanges()
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.active) {
-              if (snapshot.hasData) {
-                return const HomeScreen()
-                ;
-              } else if (snapshot.hasError) {
-                return Center(
-                  child: Text(
-                    "${snapshot.error}",
-                  ),
-                );
-              }
-            }
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: CircularProgressIndicator(
+      home: StreamBuilder(
+        stream: FirebaseAuth.instance
+            .authStateChanges(), //.userchanges() or .idtokenChanges()
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.active) {
+            if (snapshot.hasData) {
+              return const Application();
+            } else if (snapshot.hasError) {
+              return Center(
+                child: Text(
+                  "${snapshot.error}",
                 ),
               );
             }
+          }
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
 
-            return const LoginScreen();
-          },
-        ),
-      
+          return const LoginScreen();
+        },
+      ),
       theme: ThemeData(
         appBarTheme: AppBarTheme(
           centerTitle: true,
