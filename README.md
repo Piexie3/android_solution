@@ -131,5 +131,5 @@ Output
 ```
 Class A
 Class A
-Class Cs
+Class C
 ```
