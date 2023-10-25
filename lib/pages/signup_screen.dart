@@ -18,11 +18,7 @@ class _SignupScreenState extends State<SignupScreen> {
   TextEditingController confirmController = TextEditingController();
   bool loading = false;
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  // }
-
+  
   @override
   void dispose() {
     super.dispose();

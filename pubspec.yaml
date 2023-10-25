@@ -31,12 +31,12 @@ dependencies:
   cloud_firestore: ^4.9.2
   country_picker: ^2.0.21
   cupertino_icons: ^1.0.2
-  #used in Authentication
   firebase_auth: ^4.10.0
   firebase_core: ^2.16.0
   flutter:
     sdk: flutter
   google_sign_in: ^6.1.5
+  image_picker: ^1.0.4
   pinput: ^3.0.1
 
 dev_dependencies:
@@ -81,3 +81,4 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
