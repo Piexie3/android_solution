@@ -167,7 +167,9 @@ class _LoginScreenState extends State<LoginScreen> {
           controller: controller,
           maxLines: 1,
           obscureText: ispassword,
+          
           decoration: InputDecoration(
+            
             hintText: hintText,
             label: Text(label),
             hintStyle: const TextStyle(

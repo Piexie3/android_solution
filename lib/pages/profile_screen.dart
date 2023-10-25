@@ -1,8 +1,5 @@
-import 'dart:ffi';
-
-import 'package:android_solution/methods/auth_methods.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -15,266 +12,289 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
+    FirebaseFirestore db = FirebaseFirestore.instance;
+    FirebaseAuth user = FirebaseAuth.instance;
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          leading: Icon(
-            Icons.arrow_back_ios,
+      appBar: AppBar(
+        toolbarHeight: 36,
+        centerTitle: false,
+        title: Text(
+          "Profile",
+          style: TextStyle(
+            color: Color(0xFF110C26),
+            fontSize: 24,
+            fontFamily: 'Airbnb Cereal App',
+            fontWeight: FontWeight.w400,
           ),
-          title: Container(
-            child: Row(
-              children: [
-                Text(
-                  "codefive",
+        ),
+      ),
+      body: SafeArea(
+        child: StreamBuilder(
+          stream: db.collection("Users").doc(user.currentUser!.uid).snapshots(),
+          builder: (context, snapshot) {
+            return ProfileCard(snap: snapshot.data,);
+          }
+        ),
+      ),
+    );
+  }
+}
+
+class ProfileCard extends StatefulWidget {
+  final snap;
+  const ProfileCard({super.key,required this.snap});
+
+  @override
+  State<ProfileCard> createState() => _ProfileCardState();
+}
+
+class _ProfileCardState extends State<ProfileCard> {
+  @override
+ 
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          height: 300,
+          width: double.infinity,
+          child: Stack(
+            children: [
+              Positioned(
+                top: 27,
+                left: 138,
+                right: 137,
+                child: CircleAvatar(
+                  backgroundImage: AssetImage("assets/profile.jpg"),
+                  radius: 50,
+                ),
+              ),
+              Positioned(
+                left: 108,
+                top: 140,
+                child: Text(
+                  widget.snap["email"],
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Color(0xFF110C26),
+                    fontSize: 24,
+                    fontFamily: 'Airbnb Cereal App',
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
-                Icon(
-                  Icons.verified_outlined,
-                  color: Colors.blue,
-                )
-              ],
-            ),
-          ),
-          actions: [
-            Icon(
-              Icons.notifications,
-              color: Colors.black,
-            ),
-            GestureDetector(
-              onTap: ()=>AuthMethods().signOut(),
-              child: Icon(
-                Icons.more_horiz,
-                color: Colors.black,
               ),
-            ),
-          ],
-          toolbarHeight: 20,
-          backgroundColor: Colors.transparent,
-        ),
-        body: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Account(),
-              AccountDetails(),
-              Container(
-                child: Row(
-                  children: [
-                    Container(
-                      width: 150,
-                      height: 44,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(10))
-                        ,boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey,
-                            spreadRadius: 1,
-                            blurRadius: 2,
-                          )
-                        ]
+              Positioned(
+                top: 175,
+                left: 100,
+                child: Container(
+                  child: Row(
+                    children: [
+                      Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              "350",
+                              style: TextStyle(
+                                color: Color(0xFF110C26),
+                                fontSize: 16,
+                                fontFamily: 'Airbnb Cereal App',
+                                fontWeight: FontWeight.w500,
+                                height: 0.13,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Text(
+                              "Following",
+                              style: TextStyle(
+                                color: Color(0xFF747688),
+                                fontSize: 14,
+                                fontFamily: 'Airbnb Cereal App',
+                                fontWeight: FontWeight.w400,
+                                height: 0.12,
+                              ),
+                            )
+                          ],
+                        ),
                       ),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          print("... Follow clicked...");
-                        },
-                        child: Text("Follow"),
+                      SizedBox(
+                        width: 20,
                       ),
-                    )
-                  ],
+                      Container(
+                        child: Column(
+                          children: [
+                            Text(
+                              "346",
+                              style: TextStyle(
+                                color: Color(0xFF110C26),
+                                fontSize: 16,
+                                fontFamily: 'Airbnb Cereal App',
+                                fontWeight: FontWeight.w500,
+                                height: 0.13,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Text(
+                              "Followers",
+                              style: TextStyle(
+                                color: Color(0xFF747688),
+                                fontSize: 14,
+                                fontFamily: 'Airbnb Cereal App',
+                                fontWeight: FontWeight.w400,
+                                height: 0.12,
+                              ),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              Positioned(
+                left: 110,
+                top: 210,
+                child: Container(
+                  width: 154,
+                  height: 50,
+                  decoration: ShapeDecoration(
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(
+                        width: 1.50,
+                        strokeAlign: BorderSide.strokeAlignCenter,
+                        color: Color(0xFF5668FF),
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Container(
+                          height: 22,
+                          width: 22,
+                          child: Icon(Icons.edit_note)),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          'Edit Profile',
+                          style: TextStyle(
+                            color: Color(0xFF5668FF),
+                            fontSize: 16,
+                            fontFamily: 'Airbnb Cereal App',
+                            fontWeight: FontWeight.w400,
+                            height: 0.10,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               )
             ],
           ),
-        ));
-  }
-}
-
-class AccountDetails extends StatelessWidget {
-  const AccountDetails({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(
-        top: 8,
-        bottom: 8,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "Codefive",
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          Text(
-            "Android developer",
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.w400,
-            ),
-          ),
-          Text(
-            "Intrested in Coding",
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.w800,
-            ),
-          ),
-          // Container(
-          //   child: Stack(
-          //     children: [
-          //       Positioned(
-          //         left: 0,
-          //         child: CircleAvatar(
-          //           radius: 20,
-          //         ),
-          //       ),
-          //       Positioned(
-          //         left: 20,
-          //         child: CircleAvatar(radius: 20,),
-          //       ),
-          //       Positioned(
-          //         left: 40,
-          //         child: CircleAvatar(radius: 20,),
-          //       ),
-          //     ],
-          //   ),
-          // )
-          Text.rich(
-            TextSpan(
-              text: "Followed by",
-              style: TextStyle(
-                fontWeight: FontWeight.w300,
-              ),
-              children: [
-                TextSpan(
-                  text: " Joram",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                TextSpan(text: ","),
-                TextSpan(
-                  text: " Benta",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                TextSpan(text: ","),
-                TextSpan(
-                  text: " Jao Felix",
-                  style: TextStyle(
-                    color: Colors.blue,
-                    fontWeight: FontWeight.bold,
-                  ),
-                )
-              ],
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class Account extends StatelessWidget {
-  const Account({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        children: [
-          // Container(height: 80,width: 80,decoration: BoxDecoration(shape: BoxShape.circle,image: DecorationImage(image: AssetImage("assets/profile.jpg"))),),
-          Container(
-            height: 80,width: 80,decoration: BoxDecoration(shape: BoxShape.circle,),
-      child: Image.asset(
-        "assets/logo.png",
-        height: 100,
-        width: 100,
-      ),
-    ),
-          Container(
-              child: Row(
-            children: [
-              Peoples(
-                value: "600",
-                names: "Following",
-              ),
-              Peoples(
-                value: "12",
-                names: "Followers",
-              ),
-              Peoples(
-                value: "20K",
-                names: "Likes",
-              ),
-            ],
-          ))
-        ],
-      ),
-    );
-  }
-}
-
-class Peoples extends StatelessWidget {
-  const Peoples({
-    super.key,
-    required this.value,
-    required this.names,
-  });
-  final String value;
-  final String names;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        margin: const EdgeInsets.only(
-          left: 20,
-          right: 10,
         ),
-        child: Column(
+        Text(
+          'About Me',
+          style: TextStyle(
+            color: Color(0xFF110C26),
+            fontSize: 18,
+            fontFamily: 'Airbnb Cereal App',
+            fontWeight: FontWeight.w500,
+            height: 0.10,
+          ),
+        ),
+        SizedBox(height: 20,),
+       
+        // SizedBox(
+        //   child: Text(
+        //     "Enjoy your favorite dishe and a lovely your friends and family and have a great time. Food from local food trucks will be available for purchase. ",
+        //     style: TextStyle(
+        //         color: Color(0xFF3C3E56),
+        //         fontSize: 16,
+        //         fontFamily: 'Airbnb Cereal App',
+        //         fontWeight: FontWeight.w400,
+        //         height: 0.10,
+        //         overflow: TextOverflow.ellipsis),
+            
+        //   ),
+        // ),
+       SizedBox(height: 20,),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              value,
+              'Interest',
               style: TextStyle(
-                fontWeight: FontWeight.bold,
+                color: Color(0xFF172B4D),
+                fontSize: 18,
+                fontFamily: 'Airbnb Cereal App',
+                fontWeight: FontWeight.w500,
+                height: 0.10,
               ),
             ),
-            Text(
-              names,
-              style: TextStyle(
-                fontWeight: FontWeight.w500,
+            Container(
+              width: 98,
+              height: 28,
+              decoration: ShapeDecoration(
+                color: Color(0xFF5668FF),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                shadows: [
+                  BoxShadow(
+                    color: Color(0x144AD2E4),
+                    blurRadius: 20,
+                    offset: Offset(0, 8),
+                    spreadRadius: 0,
+                  )
+                ],
               ),
-            )
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Icon(
+                    Icons.edit,
+                  ),
+                  Text(
+                    "Change",
+                    style: TextStyle(
+                      color: Color(0xFF5668FF),
+                      fontSize: 10,
+                      fontFamily: 'Airbnb Cereal App',
+                      fontWeight: FontWeight.w400,
+                      height: 0,
+                    ),
+                  )
+                ],
+              ),
+            ),
           ],
-        ));
-  }
- 
-}
-
-class LogOut extends StatelessWidget {
-  const LogOut({super.key, required this.onpressed});
-  final VoidCallback onpressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onpressed,
-      child: Text("Logout"),
+        ),
+        Container(
+          child: Row(
+            children: [
+              Container(
+                width: 81,
+                height: 31,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 7),
+                decoration: ShapeDecoration(
+                  color: Color(0xFFEE544A),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                ),
+                child: Text("Cocert"),
+              )
+            ],
+          ),
+        )
+      ],
     );
   }
 }
- 
