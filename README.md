@@ -101,6 +101,7 @@ In the Firebase console, in the settings of your Android app, add your SHA-1 key
 # What is the function of @override?
 * The annotation @override marks an instance member as overriding a superclass member with the same name.
 Example
+`
 code(
     class A {
   void foo() {
@@ -125,6 +126,7 @@ void main() {
   c.foo();
 }
 )
+`
 Output
 ```
 Class A
