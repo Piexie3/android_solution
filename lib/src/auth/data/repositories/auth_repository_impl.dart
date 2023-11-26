@@ -1,18 +1,19 @@
+import 'package:android_solution/src/auth/domain/repositories/auth_repository.dart';
 import 'package:android_solution/src/auth/domain/models/user.dart' as model;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class AuthMethods {
-  FirebaseAuth auth = FirebaseAuth.instance;
-  FirebaseFirestore _db = FirebaseFirestore.instance;
+class AuthRepositoryImpl implements AuthRepository {
+  final FirebaseFirestore _db = FirebaseFirestore.instance;
+  final FirebaseAuth auth = FirebaseAuth.instance;
 
-  Future<String> signUpUser({
+  @override
+  Future<String> createUser({
     required String username,
-    required String password,
     required String email,
+    required String password,
     required String phone,
   }) async {
-    String res = "Unexpected Error Occurred";
     try {
       UserCredential userCred = await auth.createUserWithEmailAndPassword(
         email: email,
@@ -42,24 +43,18 @@ class AuthMethods {
     }
   }
 
-  //loging in a user
+  @override
   Future<String> loginUser({
     required String email,
     required String password,
-  }) async {
-    String res = "unknown error occurred";
-    try {
-      await auth.signInWithEmailAndPassword(email: email, password: password);
-      res = "success";
-    } on FirebaseAuthException catch (error) {
-      res = "FirebaseError: ${error.message}";
-    }catch(e){
-      res = "Error: ${e.toString()}";
-    }
-    return res;
+  }) {
+    // TODO: implement loginUser
+    throw UnimplementedError();
   }
-
-   Future<void> signOut() async {
-    await auth.signOut();
+  
+  @override
+  Future<List<model.User>> getUsers() {
+    // TODO: implement getUsers
+    throw UnimplementedError();
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class BlockCard extends StatelessWidget {
   const BlockCard({
-    super.key,
+    super.key, 
   });
 
   @override
